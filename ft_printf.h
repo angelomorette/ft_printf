@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorette <amorette@student.42.rio>         +#+  +:+       +#+        */
+/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:36:04 by amorette          #+#    #+#             */
-/*   Updated: 2022/07/02 16:40:46 by amorette         ###   ########.fr       */
+/*   Updated: 2022/07/08 22:03:27 by angelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
+# include "libft/libft.h"
 # include <unistd.h>
-# include <stdar.h>
+# include <stdarg.h>
 
 int ft_printf(const char *value, ...);
 
