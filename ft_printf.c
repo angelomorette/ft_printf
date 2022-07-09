@@ -3,55 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amorette <amorette@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 12:31:04 by amorette          #+#    #+#             */
-/*   Updated: 2022/07/08 22:06:59 by angelo           ###   ########.fr       */
+/*   Updated: 2022/07/09 18:37:14 by amorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "ft_printf.h"
 
-void ft_choose(va_list *args, char caracterCheck)
+static int	ft_putchar(int c)
 {
+	ft_putchar_fd(c, 1);
+	return (1);
+}
+
+static int ft_choose(va_list args, char caracterCheck)
+{
+	int caracterNumbers;
+
+	caracterNumbers = 0;
 	if (caracterCheck == 'c')
-		ft_putchar_fd(va_arg(*args, int), 1);
-	if (caracterCheck == 's')
-		ft_putstr_fd(va_arg(*args, char *), 1);
+		caracterNumbers += ft_putchar(va_arg(args, int));
 	if (caracterCheck == '%')
-		ft_putchar_fd('%', 1);
+		caracterNumbers += ft_putchar('%');
+	return (caracterNumbers);
 }
 
 int ft_printf(const char *value, ...)
 {
 	int i;
-	int result;
-	int arg;
+	int caracterNumbers;
 
 	i = 0;
-	result = 0;
-	arg = 0;
+	caracterNumbers = 0;
 	va_list list;
 	va_start(list, value);
 	while (value[i])
 	{
-		if (value[i] == '%')
-		{
-			arg++;
-			ft_choose(&list, value[++i]);
-		}
+		if (value[i] == '%' && ft_strchr("cspdiuxX%", value[i + 1]))
+			caracterNumbers += ft_choose(list, value[i + 1]);
 		else
-			ft_putchar_fd(value[i], 1);
+			caracterNumbers += ft_putchar(value[i]);
 		i++;
 	}
 
-	result = ft_strlen(value) - arg;
-
 	va_end(list);
 
-	//checando a quantidades de caracteres
-	printf("\n result = %d arguments", result, arg);
-	return (result);
+	return (caracterNumbers);
 }
