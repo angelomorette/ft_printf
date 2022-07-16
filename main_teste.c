@@ -3,29 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main_teste.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amorette <amorette@student.42.rio>         +#+  +:+       +#+        */
+/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 23:06:34 by angelo            #+#    #+#             */
-/*   Updated: 2022/07/09 18:31:19 by amorette         ###   ########.fr       */
+/*   Updated: 2022/07/16 18:57:29 by angelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int main(void)
 {
-	char caracter = '0';
-	int caracterNumbers;
+	char letter = 'c';
+	ft_printf("-----------Prints a single character.------------\n");
+	ft_printf("%c\n", letter);
+	ft_printf("-----------Prints a percent sign.------------\n");
+	ft_printf("%%\n", letter);
 
-	caracterNumbers = 0;
-	caracterNumbers = ft_printf("%c\n", caracter);
-
-	printf("###### dados da função ft_printf: ######\n");
-	printf("caracter number %i\n", caracterNumbers);
-
-	printf("######  checando com printf ######\n");
-	printf("caracter number %i\n", printf("%s", "%c Prints a single character. 0\n"));
 	return (0);
 }
 
